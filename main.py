@@ -15,6 +15,8 @@ class StaticImage(QLabel):
 class SignUpWindow(QDialog):
     def __init__(self):
         super().__init__()
+        self.setWindowTitle('Зарегистрироваться в системе')
+
         self.vBox = QVBoxLayout()
         self.attemptsBox = QHBoxLayout()
         self.buttonsBox = QHBoxLayout()
@@ -55,6 +57,34 @@ class SignUpWindow(QDialog):
 class IdentifyWindow(QDialog):
     def __init__(self):
         super().__init__()
+        self.vBox = QVBoxLayout()
+        self.buttonsBox = QHBoxLayout()
+        self.readyBox = QHBoxLayout()
+        self.setLayout(self.vBox)
+        self.setWindowTitle('Идентифицировать себя')
+
+        # создание компонентов
+        self.textToSpeech = QLabel('Текст для произнесения')
+        self.startButton = QPushButton('Старт')
+        self.stopButton = QPushButton('Стоп')
+        self.userName = QLabel('Вы - Вася Пупкин')
+        self.readyButton = QPushButton('Готово')
+
+        # добавление компонентов на форму
+        self.vBox.addWidget(QLabel('Произнесите фразу'))
+        self.vBox.addWidget(self.textToSpeech)
+
+        self.buttonsBox.addStretch(1)
+        self.buttonsBox.addWidget(self.startButton)
+        self.buttonsBox.addWidget(self.stopButton)
+        self.buttonsBox.addStretch(1)
+        self.vBox.addLayout(self.buttonsBox)
+
+        self.vBox.addWidget(self.userName)
+
+        self.readyBox.addStretch(1)
+        self.readyBox.addWidget(self.readyButton)
+        self.vBox.addLayout(self.readyBox)
 
 # форма с информацией об устройстве системы
 class AboutWindow(QDialog):
@@ -63,6 +93,7 @@ class AboutWindow(QDialog):
         self.vBox = QVBoxLayout()
         self.setLayout(self.vBox)
         self.vBox.addWidget(StaticImage('about.png'))
+        self.setWindowTitle('Как это работает?')
 
 
 # главное окно приложения
