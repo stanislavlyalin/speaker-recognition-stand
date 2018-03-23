@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 
 from PyQt5.QtWidgets import QDialog, QHBoxLayout, QVBoxLayout, QLabel, QPushButton
+from phrases import randomPhrase
 
 # форма голосовой идентификации
 class IdentifyWindow(QDialog):
@@ -34,3 +35,6 @@ class IdentifyWindow(QDialog):
         self.readyBox.addStretch(1)
         self.readyBox.addWidget(self.readyButton)
         self.vBox.addLayout(self.readyBox)
+
+    def showEvent(self, event):
+        self.textToSpeech.setText(randomPhrase())

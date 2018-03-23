@@ -2,6 +2,7 @@
 
 from PyQt5.QtWidgets import QDialog, QHBoxLayout, QVBoxLayout, QLabel, QPushButton, QLineEdit
 from PyQt5 import QtCore
+from phrases import randomPhrase
 
 # форма добавления нового пользователя
 class SignUpWindow(QDialog):
@@ -43,3 +44,6 @@ class SignUpWindow(QDialog):
         self.readyBox.addStretch(1)
         self.readyBox.addWidget(self.readyButton)
         self.vBox.addLayout(self.readyBox)
+
+    def showEvent(self, event):
+        self.textToSpeech.setText(randomPhrase())
