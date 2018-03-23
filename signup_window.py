@@ -45,5 +45,7 @@ class SignUpWindow(QDialog):
         self.readyBox.addWidget(self.readyButton)
         self.vBox.addLayout(self.readyBox)
 
+        self.stopButton.clicked.connect(lambda: self.textToSpeech.setText(randomPhrase()))
+
     def showEvent(self, event):
         self.textToSpeech.setText(randomPhrase())
