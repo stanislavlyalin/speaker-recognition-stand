@@ -3,17 +3,20 @@
 # функции для работы с файлом users.txt
 def write(id, name):
     with open('users.txt', 'a') as f:
-        f.write('%d %s' % (id, name))
+        f.write('%d;%s\n' % (id, name))
 
 def fileToDict():
-    d = {}
+    d = []
     try:
         with open('users.txt') as f:
             for line in f:
-                key, val = line.split()
-                d[int(key)] = val
+                try:
+                    key, val = line.split(';')
+                    d.append(val)
+                except:
+                    pass
     except:
-        pass
+        print('File users.txt doesnt exists.')
     return d
 
 def nextId():

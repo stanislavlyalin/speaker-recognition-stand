@@ -6,6 +6,7 @@ from signup_window import SignUpWindow
 from identify_window import IdentifyWindow
 from about_window import AboutWindow
 
+
 # главное окно приложения
 class MainWindow(QWidget):
     def __init__(self):

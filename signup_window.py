@@ -71,10 +71,10 @@ class SignUpWindow(QDialog):
         self.startButton.setEnabled(True if self.attempts < 3 else False)
         self.readyButton.setEnabled(self.attempts >= 3)
         self.textToSpeech.setText(randomPhrase())
-        print(nextId())
 
     def readyButtonClicked(self):
         write(nextId(), self.userName.text())
+        self.close()
 
     def reset(self):
         self.startButton.setEnabled(True)
