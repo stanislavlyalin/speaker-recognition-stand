@@ -1,12 +1,15 @@
 # -*- coding: utf-8 -*-
 
+import os
 from PyQt5.QtWidgets import QDialog, QHBoxLayout, QVBoxLayout, QLabel, QPushButton, QLineEdit
 from PyQt5 import QtCore
 from phrases import randomPhrase
-from users import write, nextId
+from users import write, usersCount, nextId
+from recorder import Recorder
 
 ENABLED_STYLE = 'color: green; border: 1px solid green; border-radius: 5px'
 DISABLED_STYLE = 'color: grey; border: 1px solid grey; border-radius: 5px'
+
 
 # форма добавления нового пользователя
 class SignUpWindow(QDialog):
@@ -64,6 +67,9 @@ class SignUpWindow(QDialog):
         self.stopButton.setEnabled(True)
         self.startButton.setEnabled(False)
 
+        self.recorder = Recorder()
+        self.recorder.start()
+
     def stopButtonClicked(self):
         self.attemptLabels[self.attempts].setStyleSheet(ENABLED_STYLE)
         self.attempts += 1
@@ -71,6 +77,12 @@ class SignUpWindow(QDialog):
         self.startButton.setEnabled(True if self.attempts < 3 else False)
         self.readyButton.setEnabled(self.attempts >= 3)
         self.textToSpeech.setText(randomPhrase())
+
+        trainDirectory = 'train_files'
+        if not os.path.exists(trainDirectory):
+            os.makedirs(trainDirectory)
+        path = trainDirectory + '/user%03d_%d.wav' % (usersCount(), self.attempts)
+        self.recorder.stop(path)
 
     def readyButtonClicked(self):
         write(nextId(), self.userName.text())

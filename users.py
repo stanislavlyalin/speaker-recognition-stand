@@ -19,5 +19,8 @@ def fileToDict():
         print('File users.txt doesnt exists.')
     return d
 
+def usersCount():
+    return len(fileToDict())
+
 def nextId():
-    return len(fileToDict()) + 1
+    return usersCount() + 1
