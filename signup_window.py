@@ -81,7 +81,7 @@ class SignUpWindow(QDialog):
         trainDirectory = 'train_files'
         if not os.path.exists(trainDirectory):
             os.makedirs(trainDirectory)
-        path = trainDirectory + '/user%03d_%d.wav' % (usersCount(), self.attempts)
+        path = trainDirectory + '/user%03d_%d.wav' % (nextId(), self.attempts)
         self.recorder.stop(path)
 
     def readyButtonClicked(self):
