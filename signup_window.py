@@ -119,6 +119,7 @@ class SignUpWindow(QDialog):
         self.startButton.setEnabled(True)
         self.stopButton.setEnabled(False)
         self.readyButton.setEnabled(False)
+        self.userName.setText('')
         self.attempts = 0
         for i in range(3):
             self.attemptLabels[i].setStyleSheet(DISABLED_STYLE)
