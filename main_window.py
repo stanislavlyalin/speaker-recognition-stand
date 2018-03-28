@@ -12,6 +12,7 @@ from users import usersCount
 class MainWindow(QWidget):
     def __init__(self):
         super().__init__()
+        self.setWindowTitle('Голосовая идентификация')
         self.vBox = QVBoxLayout()
         self.buttonsBox = QHBoxLayout()
         self.setLayout(self.vBox)
