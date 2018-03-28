@@ -2,11 +2,10 @@
 
 import os
 from scipy.io.wavfile import read
-import numpy as np
 from PyQt5.QtWidgets import QDialog, QHBoxLayout, QVBoxLayout, QLabel, QPushButton, QLineEdit
 from PyQt5 import QtCore
 from phrases import randomPhrase
-from users import write, usersCount, nextId
+from users import write, nextId
 from recorder import Recorder
 from speech_features import features
 
