@@ -9,9 +9,8 @@ from phrases import randomPhrase
 from users import write, nextId
 from recorder import Recorder
 from speech_features import features
-
-ENABLED_STYLE = 'color: green; border: 2px solid green; border-radius: 5px; padding: 10px; background-color: #6BE584'
-DISABLED_STYLE = 'color: grey; border: 1px solid grey; border-radius: 5px; padding: 10px'
+from settings import textToSpeechStyle,\
+    attemptEnabledStyle, attemptDisabledStyle
 
 
 # форма добавления нового пользователя
@@ -38,6 +37,7 @@ class SignUpWindow(QDialog):
         self.stopButton.setEnabled(False)
         self.textToSpeech = QLabel('Текст для произнесения')
         self.textToSpeech.setWordWrap(True)
+        self.textToSpeech.setStyleSheet(textToSpeechStyle())
         self.readyButton = QPushButton('Готово')
 
         # расположение компонентов на форме
@@ -47,7 +47,7 @@ class SignUpWindow(QDialog):
 
         self.attemptsBox.addStretch(1)
         for i in range(3):
-            self.attemptLabels[i].setStyleSheet(DISABLED_STYLE)
+            self.attemptLabels[i].setStyleSheet(attemptDisabledStyle())
             self.attemptLabels[i].setAlignment(QtCore.Qt.AlignCenter)
             self.attemptsBox.addWidget(self.attemptLabels[i])
         self.attemptsBox.addStretch(1)
@@ -82,7 +82,7 @@ class SignUpWindow(QDialog):
         self.recorder.start()
 
     def stopButtonClicked(self):
-        self.attemptLabels[self.attempts].setStyleSheet(ENABLED_STYLE)
+        self.attemptLabels[self.attempts].setStyleSheet(attemptEnabledStyle())
         self.attempts += 1
         self.stopButton.setEnabled(False)
         self.startButton.setEnabled(True if self.attempts < 3 else False)
@@ -122,4 +122,4 @@ class SignUpWindow(QDialog):
         self.userName.setText('')
         self.attempts = 0
         for i in range(3):
-            self.attemptLabels[i].setStyleSheet(DISABLED_STYLE)
+            self.attemptLabels[i].setStyleSheet(attemptDisabledStyle())

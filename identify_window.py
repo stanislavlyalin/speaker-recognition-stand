@@ -10,6 +10,7 @@ from phrases import randomPhrase
 from recorder import Recorder
 from speech_features import features
 from users import fileToDict
+from settings import textToSpeechStyle
 
 
 def standartize(X):
@@ -33,6 +34,7 @@ class IdentifyWindow(QDialog):
         # создание компонентов
         self.textToSpeech = QLabel('Текст для произнесения')
         self.textToSpeech.setWordWrap(True)
+        self.textToSpeech.setStyleSheet(textToSpeechStyle())
         self.startButton = QPushButton('Старт')
         self.stopButton = QPushButton('Стоп')
         self.userName = QLabel('Вы - <неизвестный пользователь>')
