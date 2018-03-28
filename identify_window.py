@@ -5,6 +5,7 @@ from scipy.io.wavfile import read
 import numpy as np
 from sklearn.neighbors import KNeighborsClassifier
 from PyQt5.QtWidgets import QDialog, QHBoxLayout, QVBoxLayout, QLabel, QPushButton
+from PyQt5.QtGui import QIcon
 from phrases import randomPhrase
 from recorder import Recorder
 from speech_features import features
@@ -21,11 +22,12 @@ def standartize(X):
 class IdentifyWindow(QDialog):
     def __init__(self):
         super().__init__()
+        self.setWindowTitle('Идентифицировать себя')
+        self.setWindowIcon(QIcon('Voice-Search.ico'))
         self.vBox = QVBoxLayout()
         self.buttonsBox = QHBoxLayout()
         self.readyBox = QHBoxLayout()
         self.setLayout(self.vBox)
-        self.setWindowTitle('Идентифицировать себя')
 
         # создание компонентов
         self.textToSpeech = QLabel('Текст для произнесения')

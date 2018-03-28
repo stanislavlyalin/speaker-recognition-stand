@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 
 from PyQt5.QtWidgets import QWidget, QHBoxLayout, QVBoxLayout, QLabel, QPushButton
+from PyQt5.QtGui import QIcon
 from static_image import StaticImage
 from signup_window import SignUpWindow
 from identify_window import IdentifyWindow
@@ -13,6 +14,7 @@ class MainWindow(QWidget):
     def __init__(self):
         super().__init__()
         self.setWindowTitle('Голосовая идентификация')
+        self.setWindowIcon(QIcon('Voice-Search.ico'))
         self.vBox = QVBoxLayout()
         self.buttonsBox = QHBoxLayout()
         self.setLayout(self.vBox)

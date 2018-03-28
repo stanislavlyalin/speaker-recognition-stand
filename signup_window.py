@@ -4,6 +4,7 @@ import os
 from scipy.io.wavfile import read
 from PyQt5.QtWidgets import QDialog, QHBoxLayout, QVBoxLayout, QLabel, QPushButton, QLineEdit, QMessageBox
 from PyQt5 import QtCore
+from PyQt5.QtGui import QIcon
 from phrases import randomPhrase
 from users import write, nextId
 from recorder import Recorder
@@ -18,6 +19,7 @@ class SignUpWindow(QDialog):
     def __init__(self):
         super().__init__()
         self.setWindowTitle('Зарегистрироваться в системе')
+        self.setWindowIcon(QIcon('Voice-Search.ico'))
         self.attempts = 0
 
         self.vBox = QVBoxLayout()
