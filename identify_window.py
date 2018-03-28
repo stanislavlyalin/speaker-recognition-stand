@@ -53,6 +53,7 @@ class IdentifyWindow(QDialog):
         # connect
         self.startButton.clicked.connect(lambda: self.startButtonClicked())
         self.stopButton.clicked.connect(lambda: self.stopButtonClicked())
+        self.readyButton.clicked.connect(lambda: self.close())
 
     def startButtonClicked(self):
         self.stopButton.setEnabled(True)
