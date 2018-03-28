@@ -1,11 +1,14 @@
 # -*- coding: utf-8 -*-
 
 import os
+from scipy.io.wavfile import read
+import numpy as np
 from PyQt5.QtWidgets import QDialog, QHBoxLayout, QVBoxLayout, QLabel, QPushButton, QLineEdit
 from PyQt5 import QtCore
 from phrases import randomPhrase
 from users import write, usersCount, nextId
 from recorder import Recorder
+from speech_features import features
 
 ENABLED_STYLE = 'color: green; border: 1px solid green; border-radius: 5px'
 DISABLED_STYLE = 'color: grey; border: 1px solid grey; border-radius: 5px'
@@ -78,11 +81,24 @@ class SignUpWindow(QDialog):
         self.readyButton.setEnabled(self.attempts >= 3)
         self.textToSpeech.setText(randomPhrase())
 
+        # запись речевого фрагмента в файл
         trainDirectory = 'train_files'
         if not os.path.exists(trainDirectory):
             os.makedirs(trainDirectory)
         path = trainDirectory + '/user%03d_%d.wav' % (nextId(), self.attempts)
         self.recorder.stop(path)
+
+        # вычисление признаков по файлу и запись в их в файл data.txt
+        feats = self.processFile(path)
+        with open('data.txt', 'a') as f:
+            for item in feats:
+                f.write('%.10f;' % item)
+            f.write('%d\n' % nextId())
+
+    def processFile(self, path):
+        sampleRate, samples = read(path)
+        return features(samples, sampleRate)
+
 
     def readyButtonClicked(self):
         write(nextId(), self.userName.text())
