@@ -5,6 +5,7 @@ from static_image import StaticImage
 from signup_window import SignUpWindow
 from identify_window import IdentifyWindow
 from about_window import AboutWindow
+from users import usersCount
 
 
 # главное окно приложения
@@ -38,3 +39,6 @@ class MainWindow(QWidget):
         self.signUpButton.clicked.connect(self.signUpWindow.show)
         self.identifyButton.clicked.connect(self.identifyWindow.show)
         self.aboutButton.clicked.connect(self.aboutWindow.show)
+
+    def paintEvent(self, event):
+        self.usersText.setText('В системе %d пользователей' % usersCount())
