@@ -88,8 +88,8 @@ class IdentifyWindow(QDialog):
         feats = (feats - m) / s
 
         clf = KNeighborsClassifier(n_neighbors=3, p=1)
-        clf.fit(X_train, y.ravel())
-        id = int(clf.predict(feats))
+        clf.fit(X_train, y)
+        id = int(clf.predict(feats.reshape(1, -1)))
 
         # вывод на экран имени распознанного пользователя
         users = fileToDict()
