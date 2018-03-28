@@ -24,6 +24,7 @@ class IdentifyWindow(QDialog):
         super().__init__()
         self.setWindowTitle('Идентифицировать себя')
         self.setWindowIcon(QIcon('Voice-Search.ico'))
+        self.setMinimumSize(700, 300)
         self.vBox = QVBoxLayout()
         self.buttonsBox = QHBoxLayout()
         self.readyBox = QHBoxLayout()
@@ -31,6 +32,7 @@ class IdentifyWindow(QDialog):
 
         # создание компонентов
         self.textToSpeech = QLabel('Текст для произнесения')
+        self.textToSpeech.setWordWrap(True)
         self.startButton = QPushButton('Старт')
         self.stopButton = QPushButton('Стоп')
         self.userName = QLabel('Вы - <неизвестный пользователь>')

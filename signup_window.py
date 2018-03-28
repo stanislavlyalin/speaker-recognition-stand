@@ -20,6 +20,7 @@ class SignUpWindow(QDialog):
         super().__init__()
         self.setWindowTitle('Зарегистрироваться в системе')
         self.setWindowIcon(QIcon('Voice-Search.ico'))
+        self.setMinimumSize(700, 300)
         self.attempts = 0
 
         self.vBox = QVBoxLayout()
@@ -36,6 +37,7 @@ class SignUpWindow(QDialog):
         self.stopButton = QPushButton('Стоп')
         self.stopButton.setEnabled(False)
         self.textToSpeech = QLabel('Текст для произнесения')
+        self.textToSpeech.setWordWrap(True)
         self.readyButton = QPushButton('Готово')
 
         # расположение компонентов на форме
