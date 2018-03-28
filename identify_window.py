@@ -104,4 +104,8 @@ class IdentifyWindow(QDialog):
         return features(samples, sampleRate)
 
     def showEvent(self, event):
+        self.reset()
+
+    def reset(self):
+        self.userName.setText('Вы - <неизвестный пользователь>')
         self.textToSpeech.setText(randomPhrase())
