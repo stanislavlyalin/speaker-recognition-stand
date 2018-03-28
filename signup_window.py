@@ -2,7 +2,7 @@
 
 import os
 from scipy.io.wavfile import read
-from PyQt5.QtWidgets import QDialog, QHBoxLayout, QVBoxLayout, QLabel, QPushButton, QLineEdit
+from PyQt5.QtWidgets import QDialog, QHBoxLayout, QVBoxLayout, QLabel, QPushButton, QLineEdit, QMessageBox
 from PyQt5 import QtCore
 from phrases import randomPhrase
 from users import write, nextId
@@ -27,7 +27,8 @@ class SignUpWindow(QDialog):
         self.setLayout(self.vBox)
 
         # создание компонентов
-        self.userName = QLineEdit('Ваше имя')
+        self.userName = QLineEdit('')
+        self.userName.setPlaceholderText('Введите ваше имя')
         self.attemptLabels = [QLabel(str(i+1)) for i in range(3)]
         self.startButton = QPushButton('Старт')
         self.stopButton = QPushButton('Стоп')
@@ -100,6 +101,9 @@ class SignUpWindow(QDialog):
 
 
     def readyButtonClicked(self):
+        if len(self.userName.text()) < 1:
+            QMessageBox.warning(self, 'Внимание', 'Необходимо задать имя пользователя')
+            return
         write(nextId(), self.userName.text())
         self.close()
 
