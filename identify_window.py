@@ -69,6 +69,7 @@ class IdentifyWindow(QDialog):
     def stopButtonClicked(self):
         self.stopButton.setEnabled(False)
         self.startButton.setEnabled(True)
+        self.textToSpeech.setText(randomPhrase())
 
         # запись речевого фрагмента в файл
         testDirectory = 'test_files'
