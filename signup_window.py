@@ -9,8 +9,8 @@ from users import write, nextId
 from recorder import Recorder
 from speech_features import features
 
-ENABLED_STYLE = 'color: green; border: 1px solid green; border-radius: 5px'
-DISABLED_STYLE = 'color: grey; border: 1px solid grey; border-radius: 5px'
+ENABLED_STYLE = 'color: green; border: 2px solid green; border-radius: 5px; padding: 10px; background-color: #6BE584'
+DISABLED_STYLE = 'color: grey; border: 1px solid grey; border-radius: 5px; padding: 10px'
 
 
 # форма добавления нового пользователя
@@ -40,10 +40,14 @@ class SignUpWindow(QDialog):
         self.vBox.addWidget(QLabel('Представьтесь'))
         self.vBox.addWidget(self.userName)
         self.vBox.addWidget(QLabel('Запишите 3 фрагмента речи'))
+
+        self.attemptsBox.addStretch(1)
         for i in range(3):
             self.attemptLabels[i].setStyleSheet(DISABLED_STYLE)
             self.attemptLabels[i].setAlignment(QtCore.Qt.AlignCenter)
             self.attemptsBox.addWidget(self.attemptLabels[i])
+        self.attemptsBox.addStretch(1)
+
         self.vBox.addLayout(self.attemptsBox)
         self.vBox.addWidget(self.textToSpeech)
 
