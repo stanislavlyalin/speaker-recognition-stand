@@ -93,7 +93,7 @@ class IdentifyWindow(QDialog):
 
         # вывод на экран имени распознанного пользователя
         users = fileToDict()
-        self.userName.setText('Вы - %s' % users[id])
+        self.userName.setText('Вы - %s' % users[id-1])
 
 
     def processFile(self, path):
